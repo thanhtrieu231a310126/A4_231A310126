@@ -1,0 +1,8 @@
+<resources>
+    <style name="Theme.A4" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">#215D51</item>
+        <item name="colorSecondary">#215D51</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

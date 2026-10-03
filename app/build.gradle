@@ -1,0 +1,34 @@
+plugins { id 'com.android.application'; id 'jacoco' }
+android {
+    namespace 'vn.edu.vhu.ltdd.a4events'
+    compileSdk 36
+    buildToolsVersion '36.0.0'
+    defaultConfig {
+        applicationId 'vn.edu.vhu.ltdd.a4events'
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName '1.0'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    testOptions { unitTests.returnDefaultValues = true }
+}
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.activity:activity:1.9.3'
+    implementation 'com.google.android.material:material:1.12.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'androidx.test:core:1.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+}
+jacoco { toolVersion = '0.8.12' }
+tasks.withType(Test).configureEach { jacoco { includeNoLocationClasses = true; excludes = ['jdk.internal.*'] } }
+tasks.register('logicCoverage', JacocoReport) {
+    dependsOn 'testDebugUnitTest'
+    executionData files("$buildDir/jacoco/testDebugUnitTest.exec")
+    sourceDirectories.from(files('src/main/java'))
+    classDirectories.from(fileTree("$buildDir/intermediates/javac/debug/compileDebugJavaWithJavac/classes") { include '**/CalculatorLogic*.class', '**/HistoryStore*.class' })
+    reports { xml.required = true; html.required = true }
+}

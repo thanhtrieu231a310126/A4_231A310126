@@ -1,0 +1,6 @@
+<resources>
+    <color name="bmi_under">#4A5568</color>
+    <color name="bmi_normal">#176534</color>
+    <color name="bmi_over">#8A6800</color>
+    <color name="bmi_obese">#B91C1C</color>
+</resources>
